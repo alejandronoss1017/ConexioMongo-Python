@@ -1,9 +1,10 @@
-# Conexion a MongoDB con Python 
+# Conexion a MongoDB con Python 3.10.2
 
 ## _Operaciones CRUD (Create,Read,Update,Delete)_
 
 Este programa fue en base a los requerimientos solicitados en el curso de bases de datos, el corte 3 consistia en bases
 NoSQL.
+
 
 ## Dependicias y/o plugins
 
