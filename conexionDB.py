@@ -8,6 +8,7 @@ from time import sleep
 
 
 def mostrarDocumentos (cliente,collection):
+    system("cls")
     if collection == 'presidencia':
         for document in cliente.Proyecto3.presidencia.find():
             print(f'''
@@ -48,38 +49,38 @@ def mostrarDocumentos (cliente,collection):
     system("cls")
 
 def crearDocumento(cliente,collection):
+    system("cls")
     if collection == 'presidencia':
         #Variables
-        dbID = input('Digite el ID: ')
-        docName = input('Digite el nombre: ')
-        newDateN = input('Digite el la fecha aaaa/mm/dd: ').split('/')
-        birthPlace= input('Digite el lugar de nacimiento: ')
-        cantidadTitulos = int(input("Digite la cantidad de titulos: "))
+        dbID = input(f'{bcolors.HEADER}Digite el ID: {bcolors.ENDC}')
+        docName = input(f'{bcolors.HEADER}Digite el nombre: {bcolors.ENDC}')
+        newDateN = input(f'{bcolors.HEADER}Digite el la fecha aaaa/mm/dd: {bcolors.ENDC}').split('/')
+        birthPlace= input(f'{bcolors.HEADER}Digite el lugar de nacimiento: {bcolors.ENDC}')
+        cantidadTitulos = int(input(f"{bcolors.HEADER}Digite la cantidad de titulos: {bcolors.ENDC}"))
         for i in range(0,cantidadTitulos):
-            aaaa = input('Digite año de inicio y finalizacion aaaa/aaaa:' ).split('/')
+            aaaa = input(f'{bcolors.HEADER}Digite año de inicio y finalizacion aaaa/aaaa: {bcolors.ENDC}' ).split('/')
             if i == 0:
-                titulos = [{'programa': input('Digite el programa: '),'universidad': input('Digite la universidad: '),'nombrePrograma' : input('Digite el nombre del programa: '),'duracionPrograma' : [aaaa[0],aaaa[1]]}]
+                titulos = [{'programa': input(f'{bcolors.HEADER}Digite el programa: {bcolors.ENDC}'),'universidad': input(f'{bcolors.HEADER}Digite la universidad: {bcolors.ENDC}'),'nombrePrograma' : input(f'{bcolors.HEADER}Digite el nombre del programa: {bcolors.ENDC}'),'duracionPrograma' : [aaaa[0],aaaa[1]]}]
             else:
-                titulos.append({'programa': input('Digite el programa: '),'universidad': input('Digite la universidad: '),'nombrePrograma' : input('Digite el nombre del programa: '),'duracionPrograma' : [aaaa[0],aaaa[1]]})
-        cantidadCargosPublicos = int(input("Digite la cantidad de cargos publicos: "))
+                titulos.append({'programa': input(f'{bcolors.HEADER}Digite el programa: {bcolors.ENDC}'),'universidad': input(f'{bcolors.HEADER}Digite la universidad: {bcolors.ENDC}'),'nombrePrograma' : input(f'{bcolors.HEADER}Digite el nombre del programa: {bcolors.ENDC}'),'duracionPrograma' : [aaaa[0],aaaa[1]]})
+        cantidadCargosPublicos = int(input(f"{bcolors.HEADER}Digite la cantidad de cargos publicos: {bcolors.ENDC}"))
         for i in range(0,cantidadCargosPublicos):
-            aaaa = input('Digite año de inicio y finalizacion aaaa/aaaa:' ).split('/')
+            aaaa = input(f'{bcolors.HEADER}Digite año de inicio y finalizacion aaaa/aaaa:{bcolors.ENDC}' ).split('/')
             if i == 0:
-                cargosPublicos = [{'nombreCargo' : input('Digite el nombre del cargo publico: '), 'duracionCargo': [aaaa[0],aaaa[1]]}]
+                cargosPublicos = [{'nombreCargo' : input(f'{bcolors.HEADER}Digite el nombre del cargo publico: {bcolors.ENDC}'), 'duracionCargo': [aaaa[0],aaaa[1]]}]
             else:
-                cargosPublicos.append({'nombreCargo' : input('Digite el nombre del cargo publico: '), 'duracionCargo': [aaaa[0],aaaa[1]]})
-        lemaCampaña = input('Digite el lema de campaña: ')
-        partidoPolitico = input('Digite el partido politico: ')
-        edad = int(input('Digite la edad: '))
-        identificacion = input('Digite el numero de identificacion: ')
-        tipoDocumento = input('Digite el tipo de documento C | P: ')
-        cantidadProfesiones = int(input("Digite la cantidad de profesiones: "))
+                cargosPublicos.append({'nombreCargo' : input(f'{bcolors.HEADER}Digite el nombre del cargo publico: {bcolors.ENDC}'), 'duracionCargo': [aaaa[0],aaaa[1]]})
+        lemaCampaña = input(f'{bcolors.HEADER}Digite el lema de campaña: {bcolors.ENDC}')
+        partidoPolitico = input(f'{bcolors.HEADER}Digite el partido politico: {bcolors.ENDC}')
+        edad = int(input(f'{bcolors.HEADER}Digite la edad: {bcolors.ENDC}'))
+        identificacion = input(f'{bcolors.HEADER}Digite el numero de identificacion: {bcolors.ENDC}')
+        tipoDocumento = input(f'{bcolors.HEADER}Digite el tipo de documento C | P: {bcolors.ENDC}')
+        cantidadProfesiones = int(input(f'{bcolors.HEADER}Digite la cantidad de profesiones: {bcolors.ENDC}'))
         for i in range(0,cantidadProfesiones):
             if i == 0:
-                profesiones = [input(f'Digite la profesion {i+1}: ')]
+                profesiones = [input(f'{bcolors.HEADER}Digite la profesion {i+1}: {bcolors.ENDC}')]
             else:
-                profesiones.append(input(f'Digite la profesion {i+1}: '))
-
+                profesiones.append(input(f'{bcolors.HEADER}Digite la profesion {i+1}: {bcolors.ENDC}'))
 
         newDocumentPresidente = {
         '_id': dbID,
@@ -98,44 +99,41 @@ def crearDocumento(cliente,collection):
         
         try:
             cliente.Proyecto3.presidencia.insert_one(newDocumentPresidente)
-            print("Se ha agregado el documento Exitosamente")
-            system("cls")
+            print(f"{bcolors.OKGREEN}Se ha agregado el documento Exitosamente{bcolors.ENDC}")
         except Exception as e :
-            print(f'No se logro insertar el documento {e}')
-
-
+            print(f'{bcolors.FAIL}No se logro insertar el documento {e}{bcolors.ENDC}')
     elif collection == 'vicepresidencia':
         #Variables
-        dbID = input('Digite el ID: ')
-        docName = input('Digite el nombre: ')
-        newDateN = input('Digite el la fecha aaaa/mm/dd: ').split('/')
-        birthPlace= input('Digite el lugar de nacimiento: ')
-        cantidadTitulos = int(input("Digite la cantidad de titulos: "))
+        dbID = input(f'{bcolors.HEADER}Digite el ID: {bcolors.ENDC}')
+        docName = input(f'{bcolors.HEADER}Digite el nombre: {bcolors.ENDC}')
+        newDateN = input(f'{bcolors.HEADER}Digite el la fecha aaaa/mm/dd: {bcolors.ENDC}').split('/')
+        birthPlace= input(f'{bcolors.HEADER}Digite el lugar de nacimiento: {bcolors.ENDC}')
+        cantidadTitulos = int(input(f'{bcolors.HEADER}Digite la cantidad de titulos: {bcolors.ENDC}'))
         for i in range(0,cantidadTitulos):
-            aaaa = input('Digite año de inicio y finalizacion aaaa/aaaa:' ).split('/')
+            aaaa = input(f'{bcolors.HEADER}Digite año de inicio y finalizacion aaaa/aaaa:{bcolors.ENDC} ').split('/')
             if i == 0:
-                titulos = [{'programa': input('Digite el programa: '),'universidad': input('Digite la universidad: '),'nombrePrograma' : input('Digite el nombre del programa: '),'duracionPrograma' : [aaaa[0],aaaa[1]]}]
+                titulos = [{'programa': input(f'{bcolors.HEADER}Digite el programa: {bcolors.ENDC}'),'universidad': input(f'{bcolors.HEADER}Digite la universidad: {bcolors.ENDC}'),'nombrePrograma' : input(f'{bcolors.HEADER}Digite el nombre del programa: {bcolors.ENDC}'),'duracionPrograma' : [aaaa[0],aaaa[1]]}]
             else:
-                titulos.append({'programa': input('Digite el programa: '),'universidad': input('Digite la universidad: '),'nombrePrograma' : input('Digite el nombre del programa: '),'duracionPrograma' : [aaaa[0],aaaa[1]]})
-        cantidadCargosPublicos = int(input("Digite la cantidad de cargos publicos: "))
+                titulos.append({'programa': input(f'{bcolors.HEADER}Digite el programa: {bcolors.ENDC}'),'universidad': input(f'{bcolors.HEADER}Digite la universidad: {bcolors.ENDC}'),'nombrePrograma' : input(f'{bcolors.HEADER}Digite el nombre del programa: {bcolors.ENDC}'),'duracionPrograma' : [aaaa[0],aaaa[1]]})
+        cantidadCargosPublicos = int(input(f'{bcolors.HEADER}Digite la cantidad de cargos publicos: {bcolors.ENDC}'))
         for i in range(0,cantidadCargosPublicos):
-            aaaa = input('Digite año de inicio y finalizacion aaaa/aaaa:' ).split('/')
+            aaaa = input(f'{bcolors.HEADER}Digite año de inicio y finalizacion aaaa/aaaa: {bcolors.ENDC}').split('/')
             if i == 0:
-                cargosPublicos = [{'nombreCargo' : input('Digite el nombre del cargo publico: '), 'duracionCargo': [aaaa[0],aaaa[1]]}]
+                cargosPublicos = [{'nombreCargo' : input(f'{bcolors.HEADER}Digite el nombre del cargo publico: '), 'duracionCargo': [aaaa[0],aaaa[1]]}]
             else:
-                cargosPublicos.append({'nombreCargo' : input('Digite el nombre del cargo publico: '), 'duracionCargo': [aaaa[0],aaaa[1]]})
-        lemaCampaña = input('Digite el lema de campaña: ')
-        partidoPolitico = input('Digite el partido politico: ')
-        edad = int(input('Digite la edad: '))
-        identificacion = input('Digite el numero de identificacion: ')
-        tipoDocumento = input('Digite el tipo de documento C | P: ')
-        idCandidato = input('Digite la ID del candidato presidencial: ')
-        cantidadProfesiones = int(input("Digite la cantidad de profesiones: "))
+                cargosPublicos.append({'nombreCargo' : input(f'{bcolors.HEADER}Digite el nombre del cargo publico: {bcolors.ENDC}'), 'duracionCargo': [aaaa[0],aaaa[1]]})
+        lemaCampaña = input(f'{bcolors.HEADER}Digite el lema de campaña: {bcolors.ENDC}')
+        partidoPolitico = input(f'{bcolors.HEADER}Digite el partido politico: {bcolors.ENDC}')
+        edad = int(input(f'{bcolors.HEADER}Digite la edad: '))
+        identificacion = input(f'{bcolors.HEADER}Digite el numero de identificacion: {bcolors.ENDC}')
+        tipoDocumento = input(f'{bcolors.HEADER}Digite el tipo de documento C | P: {bcolors.ENDC}')
+        idCandidato = input(f'{bcolors.HEADER}Digite la ID del candidato presidencial: {bcolors.ENDC}')
+        cantidadProfesiones = int(input(f'{bcolors.HEADER}Digite la cantidad de profesiones: {bcolors.ENDC}'))
         for i in range(0,cantidadProfesiones):
             if i == 0:
-                profesiones = [input(f'Digite la profesion {i+1}: ')]
+                profesiones = [input(f'{bcolors.HEADER}Digite la profesion {i+1}{bcolors.ENDC}: ')]
             else:
-                profesiones.append(input(f'Digite la profesion {i+1}: '))
+                profesiones.append(input(f'{bcolors.HEADER}Digite la profesion {i+1}{bcolors.ENDC}: '))
         newDocumentVicepresidente = {
         '_id': dbID,
         'nombreCompleto': docName,
@@ -153,54 +151,80 @@ def crearDocumento(cliente,collection):
     }
         try:
             cliente.Proyecto3.presidencia.insert_one(newDocumentVicepresidente)
-            print("Se ha agregado el documento Exitosamente")
+            print(f"{bcolors.OKGREEN}Se ha agregado el documento Exitosamente{bcolors.ENDC}")
             system("cls")
         except Exception as e :
-            print(f'No se logro insertar el documento {e}')
+            print(f'{bcolors.FAIL}No se logro insertar el documento {e}{bcolors.ENDC}')
+    sleep(1.5)
+    system("cls")
 
 def actualizarDocumento(cliente,collection):
-    targetID = input('Digite la ID del documento a modificar: ')
+    system("cls")
+    targetID = input(f'{bcolors.HEADER}Digite la ID del documento a modificar: {bcolors.ENDC}')
     if collection == 'presidencia':
         pprint.pprint(cliente.Proyecto3.presidencia.find_one({'_id': targetID}))
-        print('atributo valorActual')
+        print(f'{bcolors.HEADER} atributo valorActual {bcolors.ENDC}')
         actualValues = input().split()
-        print('atributo nuevoValor')
+        print(f'{bcolors.HEADER}atributo nuevoValor{bcolors.ENDC}')
         newValues = input().split()
         try:
             cliente.Proyecto3.presidencia.update_one({actualValues[0] : actualValues[1]},{'$set' : {newValues[0] : newValues[1]}})
-            print('Documento modificado exitosamente')
+            print(f'{bcolors.OKGREEN}Documento modificado exitosamente{bcolors.ENDC}')
         except Exception as e:
-            print(f'No se logro modificar el documento {e}')
+            print(f'{bcolors.FAIL}No se logro modificar el documento {e}{bcolors.ENDC}')
     elif collection == 'vicepresidencia':
         pprint.pprint(cliente.Proyecto3.vicepresidencia.find_one({'_id': targetID}))
-        print('atributo valorActual')
+        print(f'{bcolors.HEADER} atributo valorActual {bcolors.ENDC}')
         actualValues = input().split()
-        print('atributo nuevoValor')
+        print(f'{bcolors.HEADER}atributo nuevoValor{bcolors.ENDC}')
         newValues = input().split()
         try:
             cliente.Proyecto3.vicepresidencia.update_one({actualValues[0] : actualValues[1]},{'$set' : {newValues[0] : newValues[1]}})
-            print('Documento modificado exitosamente')
+            print(f'{bcolors.OKGREEN}Documento modificado exitosamente{bcolors.ENDC}')
         except Exception as e:
-            print(f'No se logro modificar el documento {e}')
+            print(f'{bcolors.FAIL}No se logro modificar el documento {e}{bcolors.ENDC}')
+    sleep(1.5)
+    system("cls")
 
 def eliminarDocumento(cliente,collection):
+    system("cls")
     #variavbles
-    targetID = input('Digite la ID del documento a eliminar: ')
+    targetID = input(f'{bcolors.HEADER}Digite la ID del documento a eliminar: {bcolors.ENDC}')
     if collection == 'presidencia':
         try:
             cliente.Proyecto3.presidencia.delete_one({'_id' : targetID })
-            print(f'Se ha eliminado el documento satisfactoriamente')
+            print(f'{bcolors.FAIL}Se ha eliminado el documento satisfactoriamente{bcolors.ENDC}')
         except Exception as e:
-            print(f'No se logro eliminar el documento indicado {e}')
+            print(f'{bcolors.FAIL} No se logro eliminar el documento indicado {e}{bcolors.ENDC}')
     elif collection == 'vicepresidencia':
         try:
             cliente.Proyecto3.vicepresidencia.delete_one({'_id' : targetID })
-            print(f'Se ha eliminado el documento satisfactoriamente')
+            print(f'{bcolors.FAIL}Se ha eliminado el documento satisfactoriamente{bcolors.ENDC}')
         except Exception as e:
-            print(f'No se logro eliminar el documento indicado {e}')
+            print(f'{bcolors.FAIL}No se logro eliminar el documento indicado {e}{bcolors.ENDC}')
+    sleep(1.5)
+    system("cls")
 
-def consultas(cliente,collection):
-    pass
+def consulta(cliente):    
+    for document in cliente.Proyecto3.presidencia.find():
+            print(f'''
+==================================================================================
+{bcolors.HEADER}Nombre Presidente: {bcolors.ENDC}{document["nombreCompleto"]}
+{bcolors.HEADER}Edad: {bcolors.ENDC}{document["edad"]}
+{bcolors.HEADER}Lema de campaña: {bcolors.ENDC}{document["lemaCampaña"]}
+    ''')
+            for jdocument in cliente.Proyecto3.vicepresidencia.find():
+                if (jdocument["idCandidato"] == document["_id"]):
+                                print(f'''
+{bcolors.HEADER}Nombre VicePresidente: {bcolors.ENDC}{jdocument["nombreCompleto"]}
+{bcolors.HEADER}Edad: {bcolors.ENDC}{jdocument["edad"]}
+{bcolors.HEADER}Lema de campaña: {bcolors.ENDC}{jdocument["lemaCampaña"]}
+===================================================================================
+    ''')
+                                continue
+    if input("Presiona una tecla para continuar") != "":
+            pass
+    system("cls")
 
 def menu(cliente,MONGO_URI):
     #Constantes
@@ -215,53 +239,49 @@ def menu(cliente,MONGO_URI):
     2. Crear un nuevo documento
     3. Actualizar un documento
     4. Eliminar un documento
-    5. Consultas
+    5. consulta
     0. Salir
         """)
         try:
             opcion = int(input())
         except ValueError:
             print("Digite una opcion valida")
-            sleep(2)
+            sleep(1.5)
             main()
         if(opcion == 1):
             system("cls")
-            print("1. " + MONGO_COLLECTION1 + "\n" + "2. " + MONGO_COLLECTION2)
+            print(f"{bcolors.HEADER}1.{bcolors.ENDC} {bcolors.UNDERLINE}{MONGO_COLLECTION1}{bcolors.ENDC}\n{bcolors.HEADER}2.{bcolors.ENDC} {bcolors.UNDERLINE}{MONGO_COLLECTION2}{bcolors.ENDC}")
             if(int(input("Seleccione que coleccion quiere usar: ")) == 1):
                 mostrarDocumentos(cliente,MONGO_COLLECTION1)
             else:
                 mostrarDocumentos(cliente,MONGO_COLLECTION2)
         elif(opcion == 2):
             system("cls")
-            print("1. " + MONGO_COLLECTION1 + "\n" + "2. " + MONGO_COLLECTION2)
+            print(f"{bcolors.HEADER}1.{bcolors.ENDC} {bcolors.UNDERLINE}{MONGO_COLLECTION1}{bcolors.ENDC}\n{bcolors.HEADER}2.{bcolors.ENDC} {bcolors.UNDERLINE}{MONGO_COLLECTION2}{bcolors.ENDC}")
             if(int(input("Seleccione que coleccion quiere usar: ")) == 1):
                 crearDocumento(cliente,MONGO_COLLECTION1)
             else:
                 crearDocumento(cliente,MONGO_COLLECTION2)
         elif(opcion == 3):
             system("cls")
-            print("1. " + MONGO_COLLECTION1 + "\n" + "2. " + MONGO_COLLECTION2)
+            print(f"{bcolors.HEADER}1.{bcolors.ENDC} {bcolors.UNDERLINE}{MONGO_COLLECTION1}{bcolors.ENDC}\n{bcolors.HEADER}2.{bcolors.ENDC} {bcolors.UNDERLINE}{MONGO_COLLECTION2}{bcolors.ENDC}")
             if(int(input("Seleccione que coleccion quiere usar: ")) == 1):
                 actualizarDocumento(cliente,MONGO_COLLECTION1)
             else:
                 actualizarDocumento(cliente,MONGO_COLLECTION2)
         elif(opcion == 4):
             system("cls")
-            print("1. " + MONGO_COLLECTION1 + "\n" + "2. " + MONGO_COLLECTION2)
+            print(f"{bcolors.HEADER}1.{bcolors.ENDC} {bcolors.UNDERLINE}{MONGO_COLLECTION1}{bcolors.ENDC}\n{bcolors.HEADER}2.{bcolors.ENDC} {bcolors.UNDERLINE}{MONGO_COLLECTION2}{bcolors.ENDC}")
             if(int(input("Seleccione que coleccion quiere usar: ")) == 1):
                 eliminarDocumento(cliente,MONGO_COLLECTION1)
             else:
                 eliminarDocumento(cliente,MONGO_COLLECTION2)
         elif(opcion == 5):
             system("cls")
-            print("1. " + MONGO_COLLECTION1 + "\n" + "2. " + MONGO_COLLECTION2)
-            if(int(input("Seleccione que coleccion quiere usar: ")) == 1):
-                consultas(cliente,MONGO_COLLECTION1)
-            else:
-                consultas(cliente,MONGO_COLLECTION2)
+            consulta(cliente)
         elif(opcion == 0):
-            print("Conexion Finalizada")
-            sleep(1)
+            print(f"{bcolors.WARNING}Conexion Finalizada{bcolors.ENDC}")
+            sleep(1.5)
             break
         
 

@@ -14,7 +14,7 @@ NoSQL.
 > para no afectar las dependicias instaladas globlamente
 
 ## Creacion de un VENV
-Para crear un entorno virtual, primero debemos estar en nuestra carpeta de trabajo, posterioe a esto utilizamos
+Para crear un entorno virtual, primero debemos estar en nuestra carpeta de trabajo, posterior a esto utilizamos
 
 - Windows
 ```sh
